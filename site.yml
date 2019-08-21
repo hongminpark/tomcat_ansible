@@ -1,0 +1,13 @@
+---
+- hosts: was
+  become: True
+  roles:
+    - common
+    - tomcat
+  vars:
+    - tomcat_user: tomcat
+    - tomcat_group: wasadm
+    - tomcat_user_pw: tomcat
+
+
+

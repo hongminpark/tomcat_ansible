@@ -1,0 +1,7 @@
+---
+# tasks file for common
+- name: Make users and groups
+  import_tasks: user.yml
+- name: Make filesystem
+  import_tasks: filesystem.yml
+

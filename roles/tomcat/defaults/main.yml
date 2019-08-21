@@ -1,0 +1,65 @@
+---
+# defaults file for tomcat
+
+# java_version:
+# java_home: 
+
+# The explicit version to use when referring to the short name.
+tomcat_version7: 7.0.96
+tomcat_version8: 8.5.43
+tomcat_version9: 9.0.24
+
+# Some defaults.
+tomcat_name: con1
+tomcat_appname: test1
+tomcat_contextpath: #None for default
+tomcat_appbase: /wasapp
+tomcat_docbase: "{{ tomcat_appname }}"
+tomcat_loghome: "/logfs/tomcat/{{ tomcat_name }}/{{ tomcat_appname }}"
+tomcat_directory: "/was/tomcat-{{ tomcat_version }}"
+tomcat_version: 8.5.43
+tomcat_user: tomcat
+tomcat_group: tomcat
+tomcat_xms: 512M
+tomcat_xmx: 1024M
+tomcat_min_threads: 50
+tomcat_max_threads: 50
+tomcat_non_ssl_connector_port: 8080
+tomcat_ssl_connector_port: 8443
+tomcat_shutdown_port: 8005
+tomcat_ajp_port: 8009
+# You can enable cluster option.
+# tomcat_cluster: True
+# tomcat_cluster1:
+
+
+
+# This role allows multiple installations of Apache Tomcat, each in their own
+# location, potentially of different version.
+# This is done by defining a "tomcat_instances" where "name:" is a unique
+# identifier of an instance.
+# The default tomcat_instances is one instance using the defaults described
+# in defaults/main.yml.
+tomcat_instances:
+  - name: "{{ tomcat_name }}"
+    contextpath: "{{ tomcat_contextpath }}"
+    appname: "{{ tomcat_appname }}"
+    appbase: "{{ tomcat_appbase }}"
+    docbase: "{{ tomcat_docbase }}"
+    loghome: "{{ tomcat_loghome }}"
+    directory: "{{ tomcat_directory }}"
+    version: "{{ tomcat_version }}"
+    user: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    xms: "{{ tomcat_xms }}"
+    xmx: "{{ tomcat_xmx }}"
+    min_threads: "{{ tomcat_min_threads }}"
+    max_threads: "{{ tomcat_max_threads }}"
+    non_ssl_connector_port: "{{ tomcat_non_ssl_connector_port }}"
+    ssl_connector_port: "{{ tomcat_ssl_connector_port }}"
+    shutdown_port: "{{ tomcat_shutdown_port }}"
+    ajp_port: "{{ tomcat_ajp_port }}"
+
+# When downloading wars, should the SSL certificate be valid? (Impossible for
+# CentOS 6, so default: no.)
+tomcat_validate_certs: no

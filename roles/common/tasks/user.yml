@@ -1,0 +1,27 @@
+---
+- name: Create wasadm group
+  group:
+    name: "{{ tomcat_group }}"
+    gid: 400
+    state: present
+- name: Create tomcat admin account
+  user:
+    name: "{{ tomcat_user }}"
+    password: "{{ tomcat_user_pw }}" # Todo: password should be hashed
+    uid: 401
+    group: "{{ tomcat_group }}"
+    home: /was
+    shell: /bin/bash
+    expires: 91
+    update_password: on_create
+- name: Create individual account
+  user:
+    name: "E{{ item.username }}"
+    password: "{{ item.userpassword }}"
+    comment: "{{ item.usercomment }}"
+    uid: "{{ item.username }}"
+    shell: /bin/bash
+    expires: 91
+    update_password: on_create
+  with_items:
+    "{{ individual_users }}"

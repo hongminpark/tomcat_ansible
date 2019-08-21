@@ -1,0 +1,9 @@
+---
+- name: Create tomcat related directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+  with_items: "{{ was_filesystem }}"
