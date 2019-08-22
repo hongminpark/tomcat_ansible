@@ -11,17 +11,20 @@ tomcat_version9: 9.0.24
 
 # Some defaults.
 tomcat_name: con1
-tomcat_appname: test1
-tomcat_contextpath: #None for default
-tomcat_appbase: /wasapp
-tomcat_docbase: "{{ tomcat_appname }}"
-tomcat_loghome: "/logfs/tomcat/{{ tomcat_name }}/{{ tomcat_appname }}"
-tomcat_directory: "/was/tomcat-{{ tomcat_version }}"
 tomcat_version: 8.5.43
 tomcat_user: tomcat
 tomcat_group: tomcat
+tomcat_appname: test1
+tomcat_contextpath: #None for default
+tomcat_directory: "/was/tomcat-{{ tomcat_version }}"
+tomcat_appbase: /wasapp
+tomcat_docbase: "{{ tomcat_appname }}"
+tomcat_loghome: "/logfs/tomcat/{{ tomcat_name }}/{{ tomcat_appname }}"
+tomcat_dumphome: "/wasdump"
+tomcat_gcloghome: "{{ tomcat_loghome }}/gc.log"
 tomcat_xms: 512M
 tomcat_xmx: 1024M
+tomcat_maxperm: 128M
 tomcat_min_threads: 50
 tomcat_max_threads: 50
 tomcat_non_ssl_connector_port: 8080
@@ -42,17 +45,20 @@ tomcat_ajp_port: 8009
 # in defaults/main.yml.
 tomcat_instances:
   - name: "{{ tomcat_name }}"
-    contextpath: "{{ tomcat_contextpath }}"
-    appname: "{{ tomcat_appname }}"
-    appbase: "{{ tomcat_appbase }}"
-    docbase: "{{ tomcat_docbase }}"
-    loghome: "{{ tomcat_loghome }}"
-    directory: "{{ tomcat_directory }}"
     version: "{{ tomcat_version }}"
     user: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
+    appname: "{{ tomcat_appname }}"
+    contextpath: "{{ tomcat_contextpath }}"
+    directory: "{{ tomcat_directory }}"
+    appbase: "{{ tomcat_appbase }}"
+    docbase: "{{ tomcat_docbase }}"
+    loghome: "{{ tomcat_loghome }}"
+    dumphome: "{{ tomcat_dumphome }}"
+    gcloghome: "{{ tomcat_gcloghome }}"
     xms: "{{ tomcat_xms }}"
     xmx: "{{ tomcat_xmx }}"
+    maxperm: "{{ tomcat_maxperm }}"
     min_threads: "{{ tomcat_min_threads }}"
     max_threads: "{{ tomcat_max_threads }}"
     non_ssl_connector_port: "{{ tomcat_non_ssl_connector_port }}"

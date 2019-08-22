@@ -26,6 +26,8 @@
 - name: configure tomcat instance - server.xml
   template:
     src: server.xml.j2
+
+
     dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/server.xml"
   # notify:
   #   - restart tomcat instance
@@ -37,14 +39,12 @@
   # notify:
   #   - restart tomcat instance
 
-# - name: configure tomcat instance - setenv.sh
-#   template:
-#     src: setenv.sh.j2
-#     dest: "{{ tomcat_directory }}/{{ instance.name }}/bin/setenv.sh"
-#   when:
-#     - instance.java_opts is defined
-#   notify:
-#     - restart tomcat instance
+- name: configure tomcat instance - setenv.sh
+  template:
+    src: setenv.sh.j2
+    dest: "{{ tomcat_directory }}/{{ instance.name }}/bin/setenv.sh"
+  # notify:
+  #   - restart tomcat instance
 
 # - name: create service instance
 #   import_role:
