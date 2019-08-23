@@ -6,9 +6,7 @@
 {% endfor %}
 {% endif %}
 
-JAVA_OPTS="-Xms{{ instance.xms }} -Xmx{{ instance.xmx }}"
-JAVA_OPTS="-XX:PermSize={{ instance.maxperm }} -XX:MaxPermSize={{ instance.maxperm }} ${JAVA_OPTS}"
-JAVA_OPTS="-XX:+UseParNewGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:{{ instance.gcloghome }} ${JAVA_OPTS}"
-JAVA_OPTS="-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ instance.dumphome }} ${JAVA_OPTS}"
-
-
+JAVA_OPTS="-Xms{{ instance.xms }} -Xmx{{ instance.xmx }}
+            -XX:PermSize={{ instance.maxperm }} -XX:MaxPermSize={{ instance.maxperm }}
+            -XX:+UseParNewGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:{{ instance.gcloghome }}
+            -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ instance.dumphome }}"
