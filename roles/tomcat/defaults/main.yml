@@ -5,7 +5,7 @@
 java_version7: java-1.7.0-openjdk-devel
 java_version8: java-1.8.0-openjdk-devel
 java_version9: java-1.9.0-openjdk-devel
-java_version: "{{ java_version7 }}"
+java_version: "{{ java_version8 }}"
 # java_home: 
 
 # The explicit version to use when referring to the short name.

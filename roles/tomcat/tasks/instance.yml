@@ -8,7 +8,7 @@
   shell: readlink -f /usr/bin/javac | cut -d/ -f1-5
   register: JAVA_HOME
   environment:
-    JAVA_HOME: JAVA_HOME.stdout
+    JAVA_HOME: JAVA_HOME
 
 - name: Ensure instance directory exists
   file:

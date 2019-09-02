@@ -13,7 +13,7 @@ PATH=$PATH:$HOME/bin
 export PATH
 
 # Tomcat custom settings
-export JAVA_HOME="{{ JAVA_HOME }}"
+export JAVA_HOME="{{ JAVA_HOME.stdout }}"
 export PATH=$JAVA_HOME/bin:$PATH
 export TOMCATDIR1="{{ tomcat_directory }}/{{ instance.name }}"
 export TOMCATLOG1="{{ instance.loghome }}"
