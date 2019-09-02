@@ -117,11 +117,11 @@
          <ResourceLink global="jdbc/XXXX" name="jdbc/XXXX" type="javax.sql.DataSource"/>
  -->
         </Context>
-
+<!--
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="{{ instance.loghome }}"
                prefix="access_log." suffix=".txt"
                pattern="%h %l %u %t "%r" %s %b" />
-        <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60" />
+        <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60" />-->
       </Host>
     </Engine>
   </Service>
