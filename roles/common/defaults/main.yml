@@ -11,15 +11,6 @@ tomcat_group: "{{ tomcat_group }}"
 tomcat_user_pw: "{{ tomcat_user_pw }}"
 
 individual_users:
-  - username: 550084
-    userpassword: P!ssw0rd
-    usercomment: Lee Seung Hoon
-  - username: 600082
-    userpassword: P!ssw0rd
-    usercomment: Hwang Sung Soon
-  - username: 678016
-    userpassword: P!ssw0rd
-    usercomment: Park Hong min
-  - username: 679006
-    userpassword: P!ssw0rd
-    usercomment: Kang Dae Hyeok
+  - username: 123456
+    userpassword: 123456
+    usercomment: Hong Gil Dong

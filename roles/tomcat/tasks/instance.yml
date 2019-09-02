@@ -1,12 +1,24 @@
 ---
-- name: ensure instance directory exists
+- name: Ensure Java is installed.
+  package:
+    name: "{{ java_version }}"
+    state: present
+- name: Export JAVA_HOME as a variable
+  shell: readlink -f /usr/bin/javac | cut -d/ -f1-5
+  register: JAVA_HOME
+  environment:
+    JAVA_HOME: JAVA_HOME
+- debug:
+    var: "{{ JAVA_HOME }}"
+
+- name: Ensure instance directory exists
   file:
     path: "{{ tomcat_directory }}/{{ instance.name }}"
     state: directory
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
 
-- name: install tomcat instance
+- name: Install tomcat instance
   unarchive:
     src: "apache-tomcat-{{ instance.version }}.tar.gz"
     dest: "{{ tomcat_directory }}/{{ instance.name }}"
@@ -19,27 +31,25 @@
   until: install_tomcat is succeeded
   retries: 3
 
-- name: save instance name
+- name: Save instance name
   set_fact:
     instance_name: "{{ instance.name }}"
 
-- name: configure tomcat instance - server.xml
+- name: Configure tomcat instance - server.xml
   template:
     src: server.xml.j2
-
-
     dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/server.xml"
   # notify:
   #   - restart tomcat instance
 
-- name: configure tomcat instance - logging.properties
+- name: Configure tomcat instance - logging.properties
   template:
     src: logging.properties.j2
     dest: "{{ tomcat_directory }}/{{ instance.name }}/conf/logging.properties"
   # notify:
   #   - restart tomcat instance
 
-- name: configure tomcat instance - setenv.sh
+- name: Configure tomcat instance - setenv.sh
   template:
     src: setenv.sh.j2
     dest: "{{ tomcat_directory }}/{{ instance.name }}/bin/setenv.sh"
