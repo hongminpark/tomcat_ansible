@@ -18,6 +18,7 @@ tomcat_name: con1
 tomcat_version: 8.5.43
 tomcat_user: tomcat
 tomcat_group: tomcat
+tomcat_userhome: /was
 tomcat_appname: test1
 tomcat_contextpath: #None for default
 tomcat_directory: "/was/tomcat-{{ tomcat_version }}"

@@ -1,29 +1,28 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
 # User specific environment and startup programs
 export LANG=UTF-8
 export PS1=`uname -n`':$PWD>'
 set -o vi
-TOMCATDIR1=/was/tomcat7/tomcat7_con1
-TOMCATDIR2=/was/tomcat7/tomcat7_con2
-TOMCATLOG=/logfs/tomcat
-NGINXDIR=/webserver/nginx/httpd
-
-export NGINXDIR
-export TOMCATDIR
-
 PATH=$PATH:$HOME/bin
-#export JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk-1.7.0.171-2.6.13.2.el7.x86_64
-export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.41.x86_64
-#export CATALINA_HOME=/was/tomcat7/tomcat7_con1
-export PATH=$JAVA_HOME/bin:$PATH:$CATALINA_HOME/bin
+export PATH
 
+# Tomcat custom settings
+export JAVA_HOME="{{ JAVA_HOME }}"
+export PATH=$JAVA_HOME/bin:$PATH
+export TOMCATDIR1="{{ tomcat_directory }}/{{ instance.name }}"
+export TOMCATLOG1="{{ instance.loghome }}"
+export PATH=$JAVA_HOME/bin:$PATH
 
 alias thome1='cd $TOMCATDIR1'
-alias thome2='cd $TOMCATDIR2'
 alias tcfg1='cd $TOMCATDIR1/conf'
-alias tcfg2='cd $TOMCATDIR2/conf'
 alias tbin1='cd $TOMCATDIR1/bin'
-alias tbin2='cd $TOMCATDIR2/bin'
-alias cdtlog1='cd $TOMCATLOG/tomcat7_con1/'
-alias cdtlog2='cd $TOMCATLOG/tomcat7_con2/'
-alias tlog1='tail -100f /logfs/tomcat/tomcat7_con1/catalina.out'
-alias tlog2='tail -100f /logfs/tomcat/tomcat7_con2/catalina.out'
+alias cdtlog1='cd $TOMCATLOG1'
+alias tlog1='tail -100f $TOMCATLOG1/catalina.out'
+alias tboot1='$TOMCATDIR1/bin/startup.sh'
+alias tdown1='$TOMCATDIR1/bin/shutdown.sh'

@@ -9,7 +9,7 @@
   environment:
     JAVA_HOME: JAVA_HOME
 - debug:
-    var: "{{ JAVA_HOME }}"
+    var: JAVA_HOME.stdout
 
 - name: Ensure instance directory exists
   file:
@@ -34,6 +34,11 @@
 - name: Save instance name
   set_fact:
     instance_name: "{{ instance.name }}"
+
+- name: Configure tomcat bash_profile
+  template:
+    src: bash_profile.j2
+    dst: "{{ tomcat_userhome }}/.bash_profile"
 
 - name: Configure tomcat instance - server.xml
   template:

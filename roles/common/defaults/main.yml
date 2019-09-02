@@ -9,6 +9,7 @@ was_filesystem:
 tomcat_user: "{{ tomcat_user }}"
 tomcat_group: "{{ tomcat_group }}"
 tomcat_user_pw: "{{ tomcat_user_pw }}"
+tomcat_userhome: "{{ tomcat_userhome }}"
 
 individual_users:
   - username: 123456
