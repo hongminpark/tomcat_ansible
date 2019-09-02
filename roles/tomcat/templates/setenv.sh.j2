@@ -7,6 +7,7 @@
 {% endif %}
 
 JAVA_OPTS="-Xms{{ instance.xms }} -Xmx{{ instance.xmx }}
-            -XX:PermSize={{ instance.maxperm }} -XX:MaxPermSize={{ instance.maxperm }}
-            -XX:+UseParNewGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:{{ instance.gcloghome }}
-            -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ instance.dumphome }}"
+            -XX:MaxMetaspaceSize={{ instance.maxperm }}
+            -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -Xloggc:{{ instance.gcloghome }}
+            -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath={{ instance.dumphome }}
+	    -Djava.security.egd=file:/dev/./urandom"

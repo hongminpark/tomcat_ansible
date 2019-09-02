@@ -17,6 +17,13 @@
     owner: "{{ tomcat_user }}"
     group: "{{ tomcat_group }}"
 
+- name: Ensure tomcat document root exists
+  file:
+    path: "{{ instance.appbase }}/{{ instance.docbase }}"
+    state: directory
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+
 - name: Install tomcat instance
   unarchive:
     src: "apache-tomcat-{{ instance.version }}.tar.gz"
