@@ -67,6 +67,37 @@
   # notify:
   #   - restart tomcat instance
 
+- name: Configure instance sample page - was_test.jsp
+  copy:
+    src: was_test.jsp
+    dest: "{{ instance.appbase }}/{{ instance.appname }}"
+
+- name: Recursively change owners, permission of files
+  command: find "{{ item }}" -type f -exec chmod 640 {} \;
+  with_items:
+  - "{{ tomcat_directory }}"
+  - "{{ instance.appbase }}"
+  - /logfs
+
+- name: Recursively change owners, permission of directories
+  command: find "{{ item }}" -type d -exec chmod 750 {} \;
+  with_items:
+  - "{{ tomcat_directory }}"
+  - "{{ instance.appbase }}"
+  - /logfs
+
+- name: Recursively change owners, permission of tomcat bin
+  command: find "{{ tomcat_directory }}/{{ instance.name }}/bin" -type f -exec chmod 750 {} \;
+
+- name: Start tomcat instance
+  command: "nohup {{ tomcat_directory }}/{{ instance.name }}/bin/startup.sh"
+  become: true
+  become_user: "{{ tomcat_user }}"
+
+- name: Check if instacne is availble 
+  uri:
+    url: http://localhost:8080
+
 # - name: create service instance
 #   import_role:
 #     name: robertdebock.service
